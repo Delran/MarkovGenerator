@@ -2,7 +2,7 @@
 """
 Created on Tue Dec  8 09:08:26 2020
 
-@author: Delran
+@author: Tibère Borel
 """
 import csv
 import random
@@ -24,6 +24,9 @@ of the generator
 Use getMarkovString() to generate a single random string
 
 Use getMarkovString() to generate a list of random strings
+
+Acces MarkovGenerator::maxLengeth to change the maximum length
+of the random strings
 '''
 class MarkovGenerator:
 
@@ -176,11 +179,11 @@ class MarkovGenerator:
     '''
     def getWordAtIndex( self, _index, _inmap ):
         #Iterating through the occurence map
-        _map = dict(sorted(_inmap.items(), key=lambda item: item[1], reverse=True))
+        #_map = dict(sorted(_inmap.items(), key=lambda item: item[1], reverse=True))
         tmp = 0;
-        for key in _map:
+        for key in _inmap:
             #increment the number of self.__occurences for this key and continue
-            tmp += _map[key] + 1
+            tmp += _inmap[key] + 1
 
             #If the combined number of self.__occurences we encountered
             #is superior to the index, then we passed it, the kay can be returned

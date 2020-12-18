@@ -18,7 +18,7 @@ def printStrList( strList ):
 def main():
 
     csvPath = 'communes-01012019.csv'
-    depth = 10
+    depth = 7
     maxMarkovLength = 50
         
     toPrint = 20
@@ -33,7 +33,7 @@ def main():
     printStrList( generator.getMarkovList( toPrint ) )
     
     #Changing algorithm depth
-    generator.changeDepth(5)
+    generator.changeDepth( 5 )
     
     printStrList( generator.getMarkovList( toPrint ) )
     
