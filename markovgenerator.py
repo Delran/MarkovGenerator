@@ -28,6 +28,11 @@ Use getMarkovString() to generate a list of random strings
 Acces MarkovGenerator::maxLengeth to change the maximum length
 of the random strings
 '''
+
+#-----------------------------------------------------------------#
+#                        Markov Generator                         #
+#-----------------------------------------------------------------#
+
 class MarkovGenerator:
 
     # _csvPath   -> string : path to the csv file containing the town names
@@ -59,8 +64,10 @@ class MarkovGenerator:
         #We now can populate occurences maps
         #it will use the now defined self.__depth
         self.changeDepth(_depth)
+    # End init ------------------------------
 
 
+    # Start populateMap ---------------------
     #Populating maps using self.depth
     def __populateMap( self ):
 
@@ -124,8 +131,10 @@ class MarkovGenerator:
             else:
                 tmpMap[tmpChar] += 1
             self.__totalOccurences[tmpStr] += 1
-    # End __populateMap ----------------------
+    # End populateMap -------------------------
 
+
+    # Start generateMarkov --------------------
     #Generate the random string
     #Function will use self.depth and self.maxLength
     def __generateMarkov( self ):
@@ -151,7 +160,7 @@ class MarkovGenerator:
             markovStr += tmpChar
 
         return markovStr
-    # End __generateMarkov ---------------------
+    # End generateMarkov ------------------------
 
 
     '''
@@ -193,7 +202,10 @@ class MarkovGenerator:
 
         #Should never be reached
         raise "Reached getWordAtIndex() end"
+    # End generateMarkov -----------------------
 
+
+    # Start changeDepth ------------------------
     #Setter for depth, maps need to be populated with given depth
     def changeDepth( self, _depth ):
         self.__depth = _depth
@@ -202,7 +214,10 @@ class MarkovGenerator:
         if _depth not in self.__populatedDepths:
             self.__populateMap()
             self.__populatedDepths.append(_depth)
-
+    # End changeDepth --------------------------
+    
+    
+    # Start getMarkovString --------------------
     #Generate and returns a single random string
     def getMarkovString( self ):
 
@@ -213,7 +228,10 @@ class MarkovGenerator:
         #Capitalize for flair
         markov = markov.capitalize()
         return markov
+    # End getMarkovString ----------------------
 
+
+    # Start getMarkovList ----------------------
     #Generate and returns a list of _nb random strings
     def getMarkovList( self, _nb ):
 
@@ -221,3 +239,8 @@ class MarkovGenerator:
         for i in range(0, _nb):
             markovs.append( self.getMarkovString() )
         return markovs
+    # End getMarkovList -----------------------
+    
+#-----------------------------------------------------------------#
+#                      End Markov Generator                       #
+#-----------------------------------------------------------------#
